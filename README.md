@@ -1,3 +1,47 @@
+# hello world using lambda and api gateway
+This project is to generate a hello world web page using aws lambda and api gateway (gw) 
+
+### setup instructions
+* need an aws account - free tier preferably
+
+### Create simple lambda function
+* open the code at src\main\resources\hello_world.py and copy it in your clipboard
+* Open aws cnosole -> services -> aws lambda - > functions -> create  function (in orange color)  ->  author from scratch -> 
+  * function name: hello_world
+  * function runtime : python 3.8
+  * leave everything else at defaults and click on 'create function' in orange at bottom right of page
+* Then click on the function just created and below you will see a ui with lambda_function.py in left nav- double click it to open its code- overwrite it with the clipboard code from above github location at src\main\resources\hello_world.py
+* Click on 'deploy' 
+* Click on dropdown for 'test' in orange and 'configure test event' and give the event a name 'mytestevent'
+  *   add or replace with below text 
+  *   {
+      "key1": "Hello, Lambda ",
+      "key2": "value2",
+      "key3": "value3"
+   }
+   * Now click on test (this is like a local lambda unit test)- you should see response in response section as 'Hello Lambda'
+ 
+### Create API Gateway (GW) and tie it with the above lambda function
+* click on aws services (in aws console)  -> lambda
+* select the function created above and then click on 'add trigger'
+  * select 'API gateway'
+  * select create an API
+  * Select REST API (you can try HTTP api also)
+  * Security keep it as "Open" - not ideal except for demo
+  * you can click additional settings for the API name etc.
+  * Click ADD orange button at bottom
+  * Now in lambda -> function -> hello_world -> configuration section you will see the API gateway (with its name) 
+  * click on details
+  * Click on the API link hyper text which is the actual endpiont of the api gw
+  * You should see a screen 'hello from lambda'
+  * Now for fun change the text in your hello_world.py and deploy it and refresh the end point and see what happens :)
+
+This concludes our simple hello world with api gw in aws.
+
+Next section below is working with lambda, s3 triggers and dynamodb tables - have fun below !
+
+
+-------------------------------------------------------
 # lambda-s3-uploader-
 This project is a demo project to learn how to use lambda to read an incoming s3 bucket object, unzip it to another bucket, then read the txt fiels and load them into dynamodb files the readme.md has to be followed carefully for the setup- Ashwin
 

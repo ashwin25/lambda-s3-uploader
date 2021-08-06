@@ -45,6 +45,14 @@ Next section below is working with lambda, s3 triggers and dynamodb tables - hav
 # lambda-s3-uploader-
 This project is a demo project to learn how to use lambda to read an incoming s3 bucket object, unzip it to another bucket, then read the txt fiels and load them into dynamodb files the readme.md has to be followed carefully for the setup- Ashwin
 
+### details of what we doing ->
+
+we upload a zip file which has csv files in the zip into s3 bucket 1
+the first lambda function watches s3 bucket 1 unzips the same and copies it to s3 bucket 2
+the second lambda watches s3 bucket 2 and extracts the csv, and uploads it into dynamdb tables (no sql db) 
+
+
+
 ### setup instructions
 * download the  git project 
 * install java and maven (optional if you plan to use java client to upload s3 files- else you can upload directly using aws ui s3)
